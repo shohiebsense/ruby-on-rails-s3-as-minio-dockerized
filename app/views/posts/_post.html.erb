@@ -9,4 +9,8 @@
     <%= post.body %>
   </p>
 
+  <% if post.avatar.attached? %>
+    <%= image_tag post.avatar %>
+  <% end %>
+
 </div>

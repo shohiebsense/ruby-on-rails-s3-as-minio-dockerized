@@ -1,0 +1,3 @@
+require 'stripe'
+Stripe.api_key='sk_test_51Pm9fE03zVV1IQmzv6wwyeQB473FCoJHsnBphKOGc78LOItZhHHLSX9U0iVxF6cNwCemDQZNWvZP507GCuhvvU5i00WXVeq06b'
+

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :log_request, only: %i[ index show create update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -68,5 +69,33 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body, :avatar)
+    end
+
+    def log_request
+      client_ip = request.remote_ip
+
+      # Get user agent
+      user_agent = request.user_agent
+
+      # Get request method (GET, POST, etc.)
+      request_method = request.method
+
+      # Prepare log payload
+      log_payload = {
+        "controller" => controller_name,
+        "action" => action_name,
+        "params" => params.to_unsafe_h,
+        "client_ip" => client_ip,
+        "user_agent" => user_agent,
+        "request_method" => request_method
+      }
+
+      # Initialize Fluentd Logger
+      log = Fluent::Logger::FluentLogger.new(nil, host: 'localhost', port: 24224)
+
+      # Post the log
+      log.post("myapp.access", log_payload)
+    rescue => e
+      Rails.logger.error("Failed to log to Fluentd: #{e.message}")
     end
 end

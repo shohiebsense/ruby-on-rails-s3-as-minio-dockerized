@@ -32,6 +32,12 @@ gem 'aws-sdk-s3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+#from github
+gem 'stripe-rails'
+
+gem 'fluent-logger'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -73,3 +79,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+#from courses
+gem "stripe", "~> 12.5"
