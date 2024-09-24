@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "mbessey.vscode-rufo",
+  "[ruby]": {
+    "editor.defaultFormatter": "jnbt.vscode-rufo"
+  },
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 700,
+}
